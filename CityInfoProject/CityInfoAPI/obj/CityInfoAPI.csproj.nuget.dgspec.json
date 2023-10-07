@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\DatingAppWholeProject\\CityInfoProject\\CityInfoAPI\\CityInfoAPI.csproj": {}
+    "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\CityInfoProject\\CityInfoProject\\CityInfoAPI\\CityInfoAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\DatingAppWholeProject\\CityInfoProject\\CityInfoAPI\\CityInfoAPI.csproj": {
+    "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\CityInfoProject\\CityInfoProject\\CityInfoAPI\\CityInfoAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\DatingAppWholeProject\\CityInfoProject\\CityInfoAPI\\CityInfoAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\CityInfoProject\\CityInfoProject\\CityInfoAPI\\CityInfoAPI.csproj",
         "projectName": "CityInfoAPI",
-        "projectPath": "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\DatingAppWholeProject\\CityInfoProject\\CityInfoAPI\\CityInfoAPI.csproj",
+        "projectPath": "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\CityInfoProject\\CityInfoProject\\CityInfoAPI\\CityInfoAPI.csproj",
         "packagesPath": "C:\\Users\\Bruker\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\DatingAppWholeProject\\CityInfoProject\\CityInfoAPI\\obj\\",
+        "outputPath": "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\CityInfoProject\\CityInfoProject\\CityInfoAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Bruker\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,42 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.22, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.22, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.22, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.22, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"

@@ -8,13 +8,9 @@ namespace CityInfoAPI.Data
 
         public CitiesDataStore()
         {     
-        }
-
-        public static List<CityDto> GetAllCities()
-        {
-            return new List<CityDto>()
+            Cities = new List<CityDto>()
             {
-                new CityDto() 
+                new CityDto()
                 { Id = 1, Name = "Kristiansand", Description = "5.biggest city",
                 PointsOfInterests = new List<PointsOfInterestsDto>()
                     {
@@ -30,7 +26,7 @@ namespace CityInfoAPI.Data
                         Name = "Centrum",
                         Description = "Central Place in Kristiansand"
                         },
-                    } 
+                    }
                 }
                 ,
                 new CityDto() { Id = 2, Name = "Oslo", Description = "Capital of Norway",
@@ -67,7 +63,7 @@ namespace CityInfoAPI.Data
                 },
                 new CityDto{ Id = 4, Name = "Bergen", Description = "The most rainy city",
                 PointsOfInterests = new List<PointsOfInterestsDto> (){
-                     new PointsOfInterestsDto(){ 
+                     new PointsOfInterestsDto(){
                      Id= 1,
                      Name="Bergen Castle",
                      Description = "Historical castle in Bergen"

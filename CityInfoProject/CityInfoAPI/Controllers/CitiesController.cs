@@ -1,5 +1,8 @@
-﻿using CityInfoAPI.Data;
+﻿using AutoMapper;
+using CityInfoAPI.Entities;
 using CityInfoAPI.Models;
+using CityInfoAPI.Models.DatabaseSessionConnection;
+using CityInfoAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CityInfoAPI.Controllers
@@ -8,17 +11,29 @@ namespace CityInfoAPI.Controllers
     [Route("api/[controller]")]
     public class CitiesController:ControllerBase
     {
-        [HttpGet]
-        public async Task<ActionResult<List<CityDto>>> GetCities()
+        private readonly CloudMailManager _mailService;
+        private readonly ICityRepository _cityRepositoryManager;
+        private readonly IMapper _mapper;
+
+        public CitiesController(CloudMailManager mailService, ICityRepository cityRepositoryManager, IMapper mapper)
         {
-            return Ok(CitiesDataStore.GetAllCities());
+            _mailService = mailService;
+            _cityRepositoryManager = cityRepositoryManager; 
+            _mapper = mapper;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<CityDto>>> GetCities()
+        {
+            var cities = await _cityRepositoryManager.GetCitiesAsync();
+            _mailService.SendMail("sender@islam.com", "pinar-naim@islam.com","All Cities are listed");
+            return Ok(_mapper.Map<IEnumerable<CityDto>>(cities));
         }
 
         [HttpGet("{id}")]
-        public ActionResult<CityDto> GetCityById(int id)
+        public async Task<ActionResult<City>> GetCityById(int id)
         {
-            List<CityDto> cities = CitiesDataStore.GetAllCities();
-            var city = cities.FirstOrDefault(c=> c.Id == id);
+            var city = await _cityRepositoryManager.GetCityByIdAsync(id);
             if (city == null)
             {
                 return NotFound($"No city found by id = {id}");
