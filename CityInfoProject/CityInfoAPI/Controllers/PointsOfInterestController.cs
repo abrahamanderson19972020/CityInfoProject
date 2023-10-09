@@ -55,48 +55,44 @@ namespace CityInfoAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<PointsOfInterestsDto> CreatePointsOfInterests(int cityId,string sender,string receiver, CreationPointsOfInterestDto creationPointsOfInterestDto)
+        public async Task<ActionResult<PointOfInterest>> CreatePointsOfInterests(int cityId,string sender,string receiver, CreationPointsOfInterestDto creationPointsOfInterestDto)
         {
-            var cities = _cityDataStore.Cities;
-            var city = cities.FirstOrDefault(c => c.Id == cityId);
-            if (city == null)
+            var city = await _cityRepository.CityExistsAsync(cityId);
+            if (city == false)
             {
                 return NotFound($"No city found with Id: {cityId}");
             }
-            PointsOfInterestsDto newPointsOfInterest = new PointsOfInterestsDto()
-            {
-                Id =  cities.SelectMany(c => c.PointsOfInterests).Max(p => p.Id) + 1,
-                Name = creationPointsOfInterestDto.Name,
-                Description = creationPointsOfInterestDto.Description,
-            };
-            city.PointsOfInterests.Add(newPointsOfInterest);
+            var finalPointOfInterest = _mapper.Map<PointOfInterest>(creationPointsOfInterestDto);
+            await _cityRepository.AddPointOfInterest(cityId, finalPointOfInterest);
+            await _cityRepository.SaveChangesAsync();
+            var createdPointOfInterest = _mapper.Map<PointsOfInterestsDto>(finalPointOfInterest);
             _mailService.SendMail(sender,receiver, "New Points of Interest is added");
-            return Ok(newPointsOfInterest);
+            return Ok(createdPointOfInterest);
         }
         [HttpPut("{pointOfInterestId}")]
-        public ActionResult UpdatePointOfInterest(int cityId, int pointOfInterestId, string sender, string receiver, CreationPointsOfInterestDto pointsOfInterestDto)
+        public async Task<ActionResult> UpdatePointOfInterest(int cityId, int pointOfInterestId, string sender, string receiver, CreationPointsOfInterestDto pointsOfInterestDto)
         {
-            var cities = _cityDataStore.Cities;
-            var city = cities.FirstOrDefault(c => c.Id == cityId);
-            if(city == null) return NotFound($"No city found with Id: {cityId}");
-            var interestToUpdate = city.PointsOfInterests.FirstOrDefault(p => p.Id == pointOfInterestId); 
+            if(!(await _cityRepository.CityExistsAsync(cityId)))
+             return NotFound($"No city found with Id: {cityId}");
+            var interestToUpdate = await _cityRepository.GetPointOfInterestByIdAsync(cityId, pointOfInterestId); 
             if(interestToUpdate == null) return NotFound($"No point of interest found with Id: {pointOfInterestId}");
-            interestToUpdate.Name = pointsOfInterestDto.Name;
-            interestToUpdate.Description = pointsOfInterestDto.Description;
+            _mapper.Map(pointsOfInterestDto,interestToUpdate);
+           await _cityRepository.SaveChangesAsync();
             _mailService.SendMail(sender, receiver, $"Point of interest found with Id: {pointOfInterestId} is changed as {pointsOfInterestDto.ToString()}");
             return NoContent();
         }
         [HttpDelete("{pointOfInterestId}")]
-        public ActionResult DeletePointOfInterest(int cityId, string sender, string receiver, int pointOfInterestId)
+        public async Task<ActionResult> DeletePointOfInterest(int cityId, string sender, string receiver, int pointOfInterestId)
         {
-            var cities = _cityDataStore.Cities;
-            var city = cities.FirstOrDefault(c => c.Id == cityId);
-            if (city == null) return NotFound($"No city found with Id: {cityId}");
-            var deletePointOfInterest = city.PointsOfInterests.FirstOrDefault(p => p.Id == pointOfInterestId);
-            if(deletePointOfInterest == null) return NotFound($"No point of interest found with Id: {pointOfInterestId}");
-            city.PointsOfInterests.Remove(deletePointOfInterest);
-            _mailService.SendMail(sender, receiver, $"Point of interest found with Id: {pointOfInterestId} and detailes as {deletePointOfInterest.ToString()} is deleted!");
-            return NoContent();
+            if (!(await _cityRepository.CityExistsAsync(cityId)))
+                return NotFound($"No city found with Id: {cityId}");
+            bool result = await _cityRepository.DeletePointOfInterestAsync(cityId, pointOfInterestId);
+            if(result)
+            {
+                _mailService.SendMail(sender, receiver, $"Point of interest found with Id: {pointOfInterestId} is deleted!");
+                return NoContent();
+            }
+            else return NotFound($"No interest found with Id: {pointOfInterestId}");
         }
 
     }
