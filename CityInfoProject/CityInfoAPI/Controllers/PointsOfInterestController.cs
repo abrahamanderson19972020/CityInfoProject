@@ -4,12 +4,14 @@ using CityInfoAPI.Entities;
 using CityInfoAPI.Models;
 using CityInfoAPI.Models.DatabaseSessionConnection;
 using CityInfoAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CityInfoAPI.Controllers
 {
     [Route("api/cities/{cityId}/pointsofinterests")]
+    [Authorize(Policy = "MustBeFromOslo")]
     [ApiController]
     public class PointsOfInterestController : ControllerBase
     {

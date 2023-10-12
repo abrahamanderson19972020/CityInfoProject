@@ -107,3 +107,4 @@ C:\Users\Bruker\OneDrive\Desktop\RealProjects\CityInfoProject\CityInfoProject\Ci
 C:\Users\Bruker\OneDrive\Desktop\RealProjects\CityInfoProject\CityInfoProject\CityInfoAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Bruker\OneDrive\Desktop\RealProjects\CityInfoProject\CityInfoProject\CityInfoAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\Bruker\OneDrive\Desktop\RealProjects\CityInfoProject\CityInfoProject\CityInfoAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Bruker\OneDrive\Desktop\RealProjects\CityInfoProject\CityInfoProject\CityInfoAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.dll

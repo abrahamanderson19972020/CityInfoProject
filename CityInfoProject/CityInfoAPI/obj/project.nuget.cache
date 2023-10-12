@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4gTugFo20/ZjRaJWGG7GanY6qM+CdqhIwyVprXkT0eBJqQthlBaygD3i2gLYpC/sq3f4NIp7YCvFv/0hmm11Ow==",
+  "dgSpecHash": "mpOG5RVAV1UML5lLIvGSOFyJX7R0PePhwxn5WVRrkZy6aIdYj8ul4tVoNiBdD9KZBeReerzLWI0WZqIcbd4sJw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Bruker\\OneDrive\\Desktop\\RealProjects\\CityInfoProject\\CityInfoProject\\CityInfoAPI\\CityInfoAPI.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Bruker\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Bruker\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Bruker\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.23\\microsoft.aspnetcore.authentication.jwtbearer.6.0.23.nupkg.sha512",
+    "C:\\Users\\Bruker\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.1.0\\microsoft.aspnetcore.mvc.versioning.5.1.0.nupkg.sha512",
     "C:\\Users\\Bruker\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Bruker\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.22\\microsoft.data.sqlite.core.6.0.22.nupkg.sha512",
     "C:\\Users\\Bruker\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.22\\microsoft.entityframeworkcore.6.0.22.nupkg.sha512",

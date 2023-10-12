@@ -53,6 +53,22 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer(
         };
     }
     );
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("MustBeFromOslo", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("city", "Oslo");
+    });
+});
+// Adding Verioning Configuration for API after Installing MVC.Versioning Package
+builder.Services.AddApiVersioning(setupAction =>
+{
+    setupAction.AssumeDefaultVersionWhenUnspecified = true;
+    setupAction.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    setupAction.ReportApiVersions = true;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -66,7 +82,7 @@ app.UseHttpsRedirection();
 app.UseCors("MyAllowSpecificOrigins");
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseAuthorization();
 app.MapControllers();//Routing Http Requests
 
 app.Run();
